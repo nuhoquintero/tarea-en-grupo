@@ -1,0 +1,31 @@
+1)
+SELECT offices.city, employees.*
+FROM  employees
+JOIN offices
+ON employees.officeCode = offices.officeCode
+WHERE employees.reportsTo = "1143"
+2)
+SELECT products.productName
+FROM products
+WHERE products.productName LIKE "1%"
+3)
+SELECT customers.contactLastName,customers.contactFirstName, payments.*
+FROM customers
+INNER JOIN payments
+ON payments.customerNumber = customers.customerNumber
+WHERE customers.customerName LIKE "mini%"
+4)
+SELECT
+    products.productName,
+    orders.status,
+    orderdetails.quantityOrdered,
+    employees.lastName,
+    offices.city
+FROM
+    orders
+INNER JOIN products ON products.productCode = orderdetails.productCode
+INNER JOIN customers ON orders.customerNumber = customers.customerNumber
+INNER JOIN orderdetails ON orders.orderNumber = orderdetails.orderNumber
+INNER JOIN offices ON offices.officeCode = employees.officeCode
+WHERE
+    customers.customerNumber = "129"
