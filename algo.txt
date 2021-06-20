@@ -15,17 +15,19 @@ INNER JOIN payments
 ON payments.customerNumber = customers.customerNumber
 WHERE customers.customerName LIKE "mini%"
 4)
-SELECT
-    products.productName,
-    orders.status,
-    orderdetails.quantityOrdered,
-    employees.lastName,
-    offices.city
-FROM
-    orders
-INNER JOIN products ON products.productCode = orderdetails.productCode
-INNER JOIN customers ON orders.customerNumber = customers.customerNumber
-INNER JOIN orderdetails ON orders.orderNumber = orderdetails.orderNumber
-INNER JOIN offices ON offices.officeCode = employees.officeCode
-WHERE
-    customers.customerNumber = "129"
+SELECT orders.status, orderdetails.quantityOrdered , products.productName, offices.city,
+employees.firstName, employees.lastName
+FROM orders
+INNER JOIN orderdetails ON orderdetails.orderNumber=orders.orderNumber
+INNER JOIN customers ON customers.customerNumber = orders.customerNumber
+INNER JOIN products ON products.productCode =orderdetails.productCode
+INNER JOIN employees ON
+employees.employeeNumber=customers.salesRepEmployeeNumber
+INNER JOIN offices ON offices.officeCode=employees.officeCode
+WHERE customers.customerNumber=129
+
+integrantes:
+Juan Roca Herrera
+Fabiana Orbegoso
+Thanyar Perez
+Nuhore Quintero
